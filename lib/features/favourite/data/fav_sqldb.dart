@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -38,16 +37,17 @@ class SqlDb {
     print('_onUpgrade=================================');
   }
 
-
-
-
   Future<List<Map>?> read() async {
     Database? myDb = await db;
     List<Map>? response = await myDb?.query("FavouriteItems");
     return response;
   }
 
-  insert(int id,String title,String image,) async {
+  insert(
+    int id,
+    String title,
+    String image,
+  ) async {
     Database? myDb = await db;
     int? response = await myDb?.insert(
       "FavouriteItems",
@@ -67,11 +67,9 @@ class SqlDb {
     return response;
   }
 
-
   deleteMyDatabase() async {
     String databasePath = await getDatabasesPath();
-    String path = join(databasePath,'favourite.db');
+    String path = join(databasePath, 'favourite.db');
     await deleteDatabase(path);
   }
-
 }
